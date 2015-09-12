@@ -68,11 +68,11 @@ public class Pila implements PilaInterfas {
 			switch (opc) {
 				case 1:
 					String val = scanner.next("Dame elemento: ");
-					pila.Push(new Nodo(val));
+					pila.push(new Nodo(val));
 					break;
 				case 2:
-					Nodo nodo = pila.Pop();
-					System.out.println ("Elemento extraido: " + nodo);
+					Nodo nodo = pila.pop();
+					System.out.println ("Elemento extraido: [" + nodo.dato + "]");
 			}
 			System.out.println(pila);
 		} while (opc != 3);
