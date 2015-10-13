@@ -1,6 +1,6 @@
 
 public interface PilaInterfas {
-	public void push(Nodo nodo);
-	public Nodo pop();
+	public void push(int valor);
+	public int pop();
 	public boolean empty();
 }

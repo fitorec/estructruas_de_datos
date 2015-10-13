@@ -2,16 +2,17 @@
 import java.util.Scanner;
 
 public class Pila implements PilaInterfas {
-	protected Nodo Top = null, aux = null;
+	protected Nodo top = null, aux = null;
 
 	/**
 	 * Se encarga de agregar un nuevo elemento en el tope de la Pila
 	 * 
 	 * @param nodo El nuevo nodo a agregar en la pila
 	 */
-	public void push(Nodo nodo) {
-		// TODO Auto-generated method stub
-		
+	public void push(int n) {
+		Nodo nuevo = new Nodo(n);
+		nuevo.abajo = this.top;
+		this.top = nuevo;
 	}
 
 	/**
@@ -19,9 +20,14 @@ public class Pila implements PilaInterfas {
 	 * 
 	 * @return tope
 	 */
-	public Nodo pop() {
-		// TODO Auto-generated method stub
-		return null;
+	public int pop() {
+		if (this.empty()) {
+			System.out.println("Error");
+			return -1;
+		}
+		int n = this.top.dato;
+		this.top = this.top.abajo;
+		return n;
 	}
 
 	/**
@@ -30,19 +36,19 @@ public class Pila implements PilaInterfas {
 	 * @return true si la pila esta vacia
 	 */
 	public boolean empty() {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.top == null);
 	}
 
 	public String toString() {
-		String out = "[tope]\n  ↓\n";
-		aux = this.Top;
+		aux = this.top;
 		if (aux == null) {
 			return "Pila vacia";
 		}
+		String out = "["+this.top.dato+"] <- [tope] \n  ↓\n";
+		aux = aux.abajo;
 		while (aux != null ) {
-			out += "[" + aux.dato +"] -> ";
-			aux = aux.next;
+			out += "[" + aux.dato +"]\n  ↓\n";
+			aux = aux.abajo;
 		}
 		return out + "NULL";
 	}
@@ -67,12 +73,11 @@ public class Pila implements PilaInterfas {
 			opc = scanner.nextInt();
 			switch (opc) {
 				case 1:
-					String val = scanner.next("Dame elemento: ");
-					pila.push(new Nodo(val));
+					System.out.println ("Dame el valor:");
+					pila.push(scanner.nextInt());
 					break;
 				case 2:
-					Nodo nodo = pila.pop();
-					System.out.println ("Elemento extraido: [" + nodo.dato + "]");
+					System.out.println ("Elemento extraido: [" + pila.pop() + "]");
 			}
 			System.out.println(pila);
 		} while (opc != 3);
