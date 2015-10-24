@@ -29,14 +29,21 @@ public class Cola implements ColaInterfas {
 	 * 
 	 * @return entradae
 	 */
-	public int extract() {
-		//Por implementar
+	public int extract() {		
 		return 0;
 	}
 	
 	public int peek() {
-		//Por implementar
-		return 0;
+		// no podemos extraer u observar si esta vacia
+		if (this.empty()) {
+			System.out.println("Cola vacia");
+			return -1;
+		}
+		this.aux = this.entrada;
+		while( this.aux.next != null) {
+			this.aux = this.aux.next;
+		}
+		return this.aux.dato;
 	}
 
 	public String toString() {
